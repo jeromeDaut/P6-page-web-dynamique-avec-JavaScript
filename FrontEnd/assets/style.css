@@ -125,6 +125,27 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+/* btn categories nav ------------------------*/
+#portfolio nav{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2.5em;
+}
+#portfolio button{
+	background: white;
+	color: #1D6154;
+	border: 1px #1D6154 solid;
+	border-radius: 25px;
+	padding: 8px;
+	margin-right: 10px;	
+	outline: none;
+	cursor: pointer;	
+}
+#portfolio .active{
+	background: #1D6154;
+	color: white;
+}
+/* ------------------------------------------ */
 .gallery {
 	width: 100%;
 	display: grid;
