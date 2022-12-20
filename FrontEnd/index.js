@@ -6,7 +6,7 @@
   const category = document.getElementById("category");
   const gallery = document.querySelector(".gallery");
   
-  // --------------------------------------------------------
+  // --------------------------------------------------------------------
   /* functions asynchronous to get the api data
   in the table categoryData and worksData: */
   const fetchCategory = async()=>{
@@ -19,15 +19,15 @@
     .then((data) =>(worksData = data),console.log('fetch valide'))
     .catch((err)=>console.log(err,"fetch error "))
   }
-  // --------------------------------------------------
+  // ---------------------------------------------------------------------
   // display section portfolio :
   const worksDisplay = async () => {
     
     await fetchCategory();
     
+    // -------------------------------------------------------------------
     // buttons injection in nav.category:
-    // -----------------------------------------------
-    category.innerHTML = `<button  onclick="currentCat = 0" class="btn active">tous</button> `;
+    category.innerHTML = `<button  onclick="currentCat = 0" class="btn active">Tous</button> `;
     category.innerHTML += categoryData.map((cat)=> `
     <button  onclick="currentCat = ${cat.id}"class="btn ">${cat.name}</button> 
     `
@@ -48,10 +48,9 @@
     for (let i= 0; i < allBtnSelected.length; i++) {
       // event btns
       allBtnSelected[i].addEventListener('click',()=>{
-        // ----------------------------------------------------------------
         // colorize buttons on click
-        for (let i = 0; i < allBtnSelected.length; i++) {
-          allBtnSelected[i].addEventListener("click", function () {
+        for (let j = 0; j < allBtnSelected.length; j++) {
+          allBtnSelected[j].addEventListener("click", function () {
             let btnClicked = document.getElementsByClassName("active");
             btnClicked[0].className = btnClicked[0].className.replace("active" ,"");
             this.className += " active";
