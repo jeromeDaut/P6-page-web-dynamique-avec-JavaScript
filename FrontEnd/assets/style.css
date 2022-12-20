@@ -149,13 +149,17 @@ li:hover {
 	display: none;
 }
 /* ------------------------------------------ */
+body .gallery{
+	width: 90%;
+	margin: auto;
+}
 .gallery {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
-
+	
 }
 
 .gallery img {
