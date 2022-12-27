@@ -69,7 +69,6 @@
           gallery.innerHTML= "";
           for(let works of worksData) {
             if (currentCat === works.categoryId) {
-              console.log(i);
               gallery.innerHTML +=` 
               <figure  class="${works.category.name} ${works.categoryId}">
               <img crossorigin="anonymous" src="${works.imageUrl}" alt="${works.title}">
