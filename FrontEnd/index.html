@@ -9,12 +9,28 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
+		<script src="https://kit.fontawesome.com/73abb5c897.js" crossorigin="anonymous"></script>
+
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 
 </head>
 
 <body>
+	<!--MODAL ---------------------------------------------------------------------------------- -->
+	<div id="edit" aria-hidden="true" role="banner">
+		<a href="#modal1" id="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
+		<input type="submit" value="publier les changements" id="ValidModal">
+	</div>
+	<aside id="modal1" class="modalContent" aria-hidden="true" role="dialog" style="display: none;">
+		<div class="modal-wrapper ">
+			<h2 id="title-modal">Gallerie photo</h2>
+			<div class="gallery-mini"></div>
+			<input type="submit" value="Ajouter une photo" id="addImageGalery">
+			<a href="" class="js-modal-close">supprimer la galerie</a>
+		</div>
+	</aside>
+	<!-- ---------------------------------------------------------------------------- -->
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -72,6 +88,7 @@
 		</nav>
 	</footer>
 	<script src="./index.js"></script>
+	<script src="./modal.js"></script>
 	<!-- <script src="./assets/script.js"></script> -->
 </body>
 
