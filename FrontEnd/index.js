@@ -1,11 +1,21 @@
 
   let categoryData =[];
   let worksData = [];
+  let userId=[];
   let currentCat = 0;
-  
+  let modal= null;
+
   const category = document.getElementById("category");
   const gallery = document.querySelector(".gallery");
+  // const galleryMini = document.querySelector('.gallery-mini');
   
+  logout = ()=>{
+    localStorage.removeItem('info');
+    localation.href('/');
+  }
+  // logout.addEventListener('click', ()=>{
+  //   // console.log(log);
+  // })
   // --------------------------------------------------------------------
   /* functions asynchronous to get the api data
   in the table categoryData and worksData: */
@@ -22,7 +32,6 @@
   // ---------------------------------------------------------------------
   // display section portfolio :
   const worksDisplay = async () => {
-    
     await fetchCategory();
     
     // -------------------------------------------------------------------
@@ -78,11 +87,21 @@
           }
         };
       })
-    };
-  }
+    }
+  };
   worksDisplay();
-  
-  
-  
-  
-      
+const bodyIndex = document.getElementsByTagName('body')
+  const adminDisplay= async()=>{
+    await login()
+    if (info.userId === 1 ) {
+    bodyIndex.innerHTML= `
+    <div id="edit" aria-hidden="true" role="banner" >
+        <a href="#modal1" id="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
+        <input type="submit" value="publier les changements" id="ValidModal">
+    </div>`
+    console.log(info);
+    }else{
+        alert("Vous n'avez pas les droits administrateur" )
+    }
+}
+adminDisplay()
