@@ -1,6 +1,5 @@
-// const modalData=[];
-let modal= null;
-let modalData =[];
+// let modal= null;
+// let modalData =[];
 const galleryMini = document.querySelector('.gallery-mini');
 // data for modal
 const fetchModal = async ()=>{ 
@@ -47,6 +46,7 @@ const displayModal = async ()=>{
     ).join("")
 }
 displayModal()
+ 
 // const modalDisplay = ()=>{
 
 // };
