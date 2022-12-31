@@ -1,36 +1,39 @@
-
-// const fetchPost =()=>{
-//     fetch("http://localhost:5678/api/login",()=>{
-//         "method"= "POST",
-//         Headers{
-            
-//         }
-//     })
-let user ={
-    userId: 1,
-}
-const login=  ()=>{
-     fetch("http://localhost:5678/api/users/login",{
-        method : 'POST',
-        headers : {
-            'Content-Type' : 'application/json;charset-utf-8',
-        },
+const login = async  ()=>{
+    await fetch("http://localhost:5678/api/users/login",{
+        // const bodyIndex = document.getElementsByTagName('body');
+       method: "POST",
+       headers: {'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
-        }),
-    })
-    .then((response) =>response.json())
-    .then((response) =>{
-        if(response.userId){
-            console.log(res.userId);
-            localStorage.setItem("info", JSON.stringify(response));
-            document.location.href="/"
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value, //"S0phie"
+     })
+   }) 
+   .then((response) =>response.json())
+   .then((response) =>{
+       console.log(response);
+       if(response.userId){
+           localStorage.setItem("info", JSON.stringify(response));
+           document.location.href="/FrontEnd/"
+
         }
-
+        else if(response.message){
+            alert('Mail  invalide')
+        }
+        else{
+            alert('Mot de passe invalide')
+        }
+        
     })
+console.log(body);
+// const adminTools= document.body.createElement('div')
 
+    // console.log("info");
 
-    // console.log(data);
+   // console.log(data);
 }
 
+// const adminDisplay= async ()=>{
+//     await login();
+//     edit.style.display=null;
+
+// }
