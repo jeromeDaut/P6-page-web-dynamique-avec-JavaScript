@@ -106,6 +106,7 @@ nav a {
 nav a:hover{
 	color: #B1663C;
 }
+
 #edit{
 	display: flex;
 	justify-content: center;
@@ -114,6 +115,7 @@ nav a:hover{
 	padding: 4px 0 4px 0;
 }
 #edit a{
+	
 	/* align-self: center; */
 	/* align-content: center; */
 	color: white;
