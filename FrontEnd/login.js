@@ -1,5 +1,5 @@
-const login = async () => {
-  await fetch("http://localhost:5678/api/users/login", {
+const login = () => {
+  fetch("http://localhost:5678/api/users/login", {
     // const bodyIndex = document.getElementsByTagName('body');
     method: "POST",
     headers: { "Content-Type": "application/json;charset=utf-8" },
@@ -21,15 +21,4 @@ const login = async () => {
       }
     });
   console.log(body);
-  // const adminTools= document.body.createElement('div')
-
-  // console.log("info");
-
-  // console.log(data);
 };
-
-// const adminDisplay= async ()=>{
-//     await login();
-//     edit.style.display=null;
-
-// }
