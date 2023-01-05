@@ -9,7 +9,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
-		<script src="https://kit.fontawesome.com/73abb5c897.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/73abb5c897.js" crossorigin="anonymous"></script>
 
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
@@ -17,17 +17,21 @@
 </head>
 
 <body>
-	<!--MODAL ---------------------------------------------------------------------------------- -->
+	<!-- Banner Admin---------------------------------------------------------------------------------------------- -->
 	<div id="edit" aria-hidden="true">
-		<a href="#modal1" id="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
+		<a href="#modal1" id="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode édition</a>
 		<input type="submit" value="publier les changements" id="ValidModal">
 	</div>
+	<!--MODAL ---------------------------------------------------------------------------------- -->
 	<aside id="modal1" class="modalContent" aria-hidden="true" role="dialog" style="display: none;">
-		<div class="modal-wrapper ">
+		<div class="modal-wrapper js-modal-stop">
+			<i class="fa-solid fa-xmark js-modal-close"></i>
 			<h2 id="title-modal">Gallerie photo</h2>
+			<div class="gallery-center">
 			<div class="gallery-mini"></div>
+			</div>
 			<input type="submit" value="Ajouter une photo" id="addImageGalery">
-			<a href="" class="js-modal-close">supprimer la galerie</a>
+			<a href="#" class="deleteGal">supprimer la galerie</a>
 		</div>
 	</aside>
 	<!-- ---------------------------------------------------------------------------- -->
@@ -38,7 +42,7 @@
 				<li>projets</li>
 				<li>contact</li>
 				<li id="login"><a href="./login.html">login</a></li>
-				<li id="logout"><a href ="#" onclick="logout()">logout</a></li>
+				<li id="logout"><a href ="#" id="logoutLink">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
