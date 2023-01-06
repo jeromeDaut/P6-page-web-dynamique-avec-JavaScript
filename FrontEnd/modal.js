@@ -2,56 +2,49 @@ const focusableSelector = "button, a ,input, textarea";
 let focusables = [];
 let currentId = 0;
 const galleryMini = document.querySelector(".gallery-mini");
+
+const displayModal = () => {
+  galleryMini.innerHTML = "";
+
+  for (const modal of modalData) {
+    galleryMini.innerHTML += `
+      <figure class = "figure" >
+      <i class="fa-regular fa-trash-can  recycle" data-id = " ${modal.id}">${modal.id}</i>
+      <img src="${modal.imageUrl}" alt="${modal.title}" data-id ="${modal.id}">
+      <a href="#" class="editImg">éditer</a>
+      </figure>
+      `;
+  }
+};
+
 // data for modal
 const getModal = () => {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
     .then((data) => {
       modalData = data;
-
-      const displayModal = () => {
-        galleryMini.innerHTML = "";
-
-        for (const modal of modalData) {
-          if (currentId == modal.id || currentId == 0) {
-            galleryMini.innerHTML += `
-            <figure class = "figure" >
-            <i class="fa-regular fa-trash-can  recycle " data-id = " ${modal.id}">${modal.id}</i>
-            <img src="${modal.imageUrl}" alt="${modal.title}" data-id ="${modal.id}">
-            <a href="#" class="editImg">éditer</a>
-            </figure>
-            `;
-          }
-        }
-        // HTMLCollection
-        // let Img = document.getElementsByClassName("figure");
-        // let recycleColl = document.querySelectorAll(".recycle");
-        // // ...on Array
-        // let recycle = [...recycleColl];
-        // let allImg = [...Img];
-
-        // function deleteImg(){
-        //
-        // }
-
-        let recycle = document.querySelector(".recycle");
-        recycle.addEventListener("click", () => {
-          currentId++;
-          for (let i = 0; i < recycle.length; i++) {}
-          // currentId++;
-          // if (recycle != 0) {
-          //   recycle.length--;
-          // }
-          displayModal();
-
-          console.log("recycleImg");
-        });
-      };
       displayModal();
+    })
+    .then(() => {
+      // getElementsByClassName et non by tagName
+      const recycleImg = document.getElementsByClassName("recycle");
+      console.log(recycleImg.length);
+      for (let i = 0; i < recycleImg.length; i++) {
+        recycleImg[i].addEventListener("click", () => {
+          currentId = recycleImg[i].getAttribute("data-id");
+          console.log(currentId);
+          deleteWork(currentId);
+          // displayModal();
+
+          // console.log(recycleImg[i].getAttribute("data-id"));
+        });
+      }
     })
     .catch((err) => console.log(err, "fetch error "));
 };
+
 getModal();
+
 const openModal = function (e) {
   e.preventDefault();
   modal = document.querySelector(e.target.getAttribute("href"));
@@ -67,6 +60,7 @@ const openModal = function (e) {
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
 };
+
 const closeModal = function (e) {
   if (modal === null) return;
   e.preventDefault();
@@ -83,9 +77,11 @@ const closeModal = function (e) {
 
   modal = null;
 };
+
 const stopPropagation = function (e) {
   e.stopPropagation();
 };
+
 const focusInModal = function (e) {
   e.preventDefault();
   let index = focusables.findIndex((f) => f === modal.querySelector(":focus"));
@@ -105,6 +101,7 @@ const focusInModal = function (e) {
 document.querySelectorAll(".js-modal").forEach((a) => {
   a.addEventListener("click", openModal);
 });
+
 window.addEventListener("keydown", function (e) {
   if (e.key === "escape" || e.key === "Esc") {
     closeModal(e);
@@ -121,11 +118,11 @@ const deleteWork = (id) => {
   fetch("http://localhost:5678/api/works/" + id, {
     method: "DELETE",
     headers: {
-      Authorization:
-        "Bearer " + JSON.parse(localStorage.gettItem("info")).token,
+      Authorization: "Bearer " + JSON.parse(localStorage.getItem("info")).token,
     },
   }).then((response) => {
+    // preventDefault();
     console.log(response);
+    getModal();
   });
-  // reloadWorks();
 };
