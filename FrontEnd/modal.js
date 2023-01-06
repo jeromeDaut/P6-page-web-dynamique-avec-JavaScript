@@ -3,55 +3,50 @@ let focusables = [];
 let currentId = 0;
 const galleryMini = document.querySelector(".gallery-mini");
 // data for modal
-const displayModal = () => {
-  galleryMini.innerHTML = "";
-
-  for (const modal of modalData) {
-    if (currentId == modal.id || currentId == 0) {
-      galleryMini.innerHTML += `
-      <figure class = "figure ${modal.id}" >
-      <i class="fa-regular fa-trash-can recycle-bin "data-cat ="${modal.id}"></i>
-      <img src="${modal.imageUrl}" alt="${modal.title}">
-      <a href="#" class="editImg">éditer</a>
-       </figure>
-      `;
-    }
-  }
-  // galleryMini.innerHTML = modalData
-  //   .map(
-  //     (modal) => `
-  //     <figure class = "figure" >
-  //     <i class="fa-regular fa-trash-can trash" data-img= "${modal.id}"></i>
-  //     <img src="${modal.imageUrl}" alt="${modal.title}">
-  //     <a href="#" class="editImg">éditer</a>
-  //     </figure>`
-  //     )
-  //     .join("");
-  // console.log(modal.id)
-
-  const recycleImg = document.querySelector(".recycle-bin");
-  recycleImg.addEventListener("click", () => {
-    currentId++;
-    if (recycleImg === 0) {
-      recycleImg = 0;
-    }
-    displayModal();
-    console.log(recycleImg);
-  });
-
-  // for (let i = 0; i < modalData.length; i++) {
-  // if (recycleImg == currentId) {
-  //   currentId = recycleImg[i].removeAttribute("data-cat");
-  // }
-  // displayModal();
-  // }
-};
-// };
 const getModal = () => {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
     .then((data) => {
       modalData = data;
+
+      const displayModal = () => {
+        galleryMini.innerHTML = "";
+
+        for (const modal of modalData) {
+          if (currentId == modal.id || currentId == 0) {
+            galleryMini.innerHTML += `
+            <figure class = "figure" >
+            <i class="fa-regular fa-trash-can  recycle " data-id = " ${modal.id}">${modal.id}</i>
+            <img src="${modal.imageUrl}" alt="${modal.title}" data-id ="${modal.id}">
+            <a href="#" class="editImg">éditer</a>
+            </figure>
+            `;
+          }
+        }
+        // HTMLCollection
+        // let Img = document.getElementsByClassName("figure");
+        // let recycleColl = document.querySelectorAll(".recycle");
+        // // ...on Array
+        // let recycle = [...recycleColl];
+        // let allImg = [...Img];
+
+        // function deleteImg(){
+        //
+        // }
+
+        let recycle = document.querySelector(".recycle");
+        recycle.addEventListener("click", () => {
+          currentId++;
+          for (let i = 0; i < recycle.length; i++) {}
+          // currentId++;
+          // if (recycle != 0) {
+          //   recycle.length--;
+          // }
+          displayModal();
+
+          console.log("recycleImg");
+        });
+      };
       displayModal();
     })
     .catch((err) => console.log(err, "fetch error "));
@@ -123,7 +118,7 @@ window.addEventListener("keydown", function (e) {
 // const reloadWorks = () => {};
 
 const deleteWork = (id) => {
-  fetch("http://localhost:5678/api/works" + id, {
+  fetch("http://localhost:5678/api/works/" + id, {
     method: "DELETE",
     headers: {
       Authorization:
@@ -131,6 +126,6 @@ const deleteWork = (id) => {
     },
   }).then((response) => {
     console.log(response);
-    reloadWorks();
   });
+  // reloadWorks();
 };
