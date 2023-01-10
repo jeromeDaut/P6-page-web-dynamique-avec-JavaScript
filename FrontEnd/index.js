@@ -2,7 +2,6 @@ let categoryData = [];
 let worksData = [];
 let currentCat = 0;
 // let modal = null;
-
 const category = document.getElementById("category");
 const gallery = document.querySelector(".gallery");
 const logout = document.getElementById("logoutLink");
@@ -107,26 +106,33 @@ adminDisplay();
 const modalContainer = document.querySelector(".modal-container");
 const modalContainer2 = document.querySelector(".modal-container2");
 const modalBtn2 = document.querySelector(".modal-btn2");
+const galleryMini = document.querySelector(".gallery-mini");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
+const categoryBtn = document.getElementById("categoryBtn");
+
 let currentId = 0;
-console.log(modalTriggers);
+
 modalTriggers.forEach((trigger) =>
   trigger.addEventListener("click", toggleModal)
 );
-// modalTriggersTwo.forEach((triggerTwo) =>
-//   triggerTwo.addEventListener("click", toggleModal)
-// );
+
 modalBtn2.addEventListener("click", () => {
   modalContainer2.classList.toggle("active");
   modalContainer.classList.remove("active");
 });
+
 function toggleModal() {
   modalContainer.classList.toggle("active");
   modalContainer2.classList.remove("active");
 }
 
-const galleryMini = document.querySelector(".gallery-mini");
-//
+const addCategory = () => {
+  categoryBtn.addEventListener("click", () => {
+    fetch("http://localhost:5678/api/categories")
+      .then((res) => res.json())
+      .then((data) => {});
+  });
+};
 
 const displayModalGallery = () => {
   galleryMini.innerHTML = "";
@@ -201,6 +207,8 @@ form.addEventListener("submit", (e) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      displayModalGallery();
+
       console.log(data);
     });
 });
