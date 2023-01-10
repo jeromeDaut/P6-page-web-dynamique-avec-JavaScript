@@ -17,23 +17,47 @@
 </head>
 
 <body>
-	<!-- Banner Admin---------------------------------------------------------------------------------------------- -->
+	<!-- nav modal admin -->
 	<div id="edit" aria-hidden="true">
-		<a href="#modal1" id="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode édition</a>
-		<input type="submit" value="publier les changements" id="ValidModal">
+		<button class ="modal-btn modal-trigger"><i class="fa-regular fa-pen-to-square" class="js-modal"></i></button>
+		<p>Mode édition</p>
+		<input type="submit" value="Publier les changements" id="ValidModal">
 	</div>
-	<!--MODAL ---------------------------------------------------------------------------------- -->
-	<aside id="modal1" class="modalContent" aria-hidden="true" role="dialog" style="display: none;">
-		<div class="modal-wrapper js-modal-stop">
-			<i class="fa-solid fa-xmark js-modal-close"></i>
+	<!-- modal1 -->
+	<div class="modal-container" >
+		<div class="overlay modal-trigger"></div>
+		<div class="modal">
+			<button class="close-modal modal-trigger">X</button>
 			<h2 id="title-modal">Gallerie photo</h2>
-			<div class="gallery-center">
 			<div class="gallery-mini"></div>
+			<div class="gallery-btn">
+				<input class="modal-btn2 modal-trigger2" type="button" value="Ajouter une photo" id="addImageGalery">
+				<a href="#" class="deleteGal">supprimer la galerie</a>
 			</div>
-			<input type="submit" value="Ajouter une photo" id="addImageGalery">
-			<a href="#" class="deleteGal">supprimer la galerie</a>
 		</div>
-	</aside>
+	</div>
+	<!-- modal2 -->
+	<div class="modal-container2">
+		<div class="overlay modal-trigger2"></div>
+		<div class="modal2">
+			<button class="close-modal modal-trigger">X</button>
+		<h2>Ajout photo</h2>
+		<form id="form" method="post" enctype="multipart/form-data" >
+			<label for="workImg"></label>
+			<input type="file" accept="image/jpeg, image/png" name="image" id="workImg" value="+ Ajouter photo">
+			<label for="worktitle" class="title">Titre</label>
+			<input type="text" name="workTitle" id="workTitle">
+			<label for="workCategory">Catégorie</label>
+			<select name="workCategory" id="workCategory">
+				<option value=""></option>
+				<option value="objet">Objets</option>
+				<option value="Appartements">Appartements</option>
+				<option value="Hotels&Restaurants">Hotels</option>
+			</select>
+			<input type="submit" id="valid" value="Valider">
+		</form>
+	</div>
+	</div>
 	<!-- ---------------------------------------------------------------------------- -->
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -65,6 +89,10 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes Projets</h2>
+			<div class="project-btn">
+			     <button class ="project-btn"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode édition</button>
+		    </div>
+			
 			<nav id="category">
 			</nav>
 			<div class="gallery">
@@ -94,7 +122,7 @@
 	</footer>
 	<script src="./index.js"></script>
 	<!-- <script src="./login.js"></script> -->
-	<script src="./modal.js"></script>
+	<!-- <script src="./modal.js"></script> -->
 	<!-- <script src="./assets/script.js"></script> -->
 </body>
 
