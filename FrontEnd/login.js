@@ -1,6 +1,6 @@
-const login = () => {
+const login = document.querySelector("#envoyer");
+login.addEventListener("click", () => {
   fetch("http://localhost:5678/api/users/login", {
-    // const bodyIndex = document.getElementsByTagName('body');
     method: "POST",
     headers: { "Content-Type": "application/json;charset=utf-8" },
     body: JSON.stringify({
@@ -21,4 +21,4 @@ const login = () => {
       }
     });
   console.log(body);
-};
+});
