@@ -2,6 +2,7 @@ let categoryData = [];
 let worksData = [];
 let currentCat = 0;
 // let modal = null;
+
 const category = document.getElementById("category");
 const gallery = document.querySelector(".gallery");
 const logout = document.getElementById("logoutLink");
@@ -48,6 +49,11 @@ const getData = () => {
           (cat) =>
             `<button  data-cat = "${cat.id}" class="btn ">${cat.name}</button>`
         )
+        .join("");
+
+      workCategory.innerHTML = `<option value="">Choisir une Catégorie </option> `;
+      workCategory.innerHTML += categoryData
+        .map((cat) => `<option value="${cat.id}">${cat.name}</option>`)
         .join("");
 
       const allBtn = category.getElementsByTagName("button");
@@ -106,19 +112,18 @@ adminDisplay();
 const modalContainer = document.querySelector(".modal-container");
 const modalContainer2 = document.querySelector(".modal-container2");
 const modalBtn2 = document.querySelector(".modal-btn2");
-const galleryMini = document.querySelector(".gallery-mini");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
-const categoryBtn = document.getElementById("categoryBtn");
-
 let currentId = 0;
-
+console.log(modalTriggers);
 modalTriggers.forEach((trigger) =>
   trigger.addEventListener("click", toggleModal)
 );
-
+// modalTriggersTwo.forEach((triggerTwo) =>
+//   triggerTwo.addEventListener("click", toggleModal)
+// );
 modalBtn2.addEventListener("click", () => {
   modalContainer2.classList.toggle("active");
-  modalContainer.classList.remove("active");
+  // modalContainer.classList.remove("active");
 });
 
 function toggleModal() {
@@ -126,13 +131,8 @@ function toggleModal() {
   modalContainer2.classList.remove("active");
 }
 
-const addCategory = () => {
-  categoryBtn.addEventListener("click", () => {
-    fetch("http://localhost:5678/api/categories")
-      .then((res) => res.json())
-      .then((data) => {});
-  });
-};
+const galleryMini = document.querySelector(".gallery-mini");
+//
 
 const displayModalGallery = () => {
   galleryMini.innerHTML = "";
@@ -158,11 +158,11 @@ const deleteWork = (id) => {
       Authorization: "Bearer " + JSON.parse(localStorage.getItem("info")).token,
     },
   }).then((response) => {
-    // preventDefault();
     console.log(response);
     getModal();
   });
 };
+
 // fetch modal
 const getModal = () => {
   fetch("http://localhost:5678/api/works")
@@ -191,11 +191,12 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const image = e.target.image.files[0];
   const workTitle = e.target.workTitle.value;
-  const workCategory = e.target.workCategory.value;
+  const workCategory = Number(e.target.workCategory.value);
+
   const data = new FormData();
   data.append("image", image);
-  data.append("workTitle", workTitle);
-  data.append("workCategory", workCategory);
+  data.append("title", workTitle);
+  data.append("category", workCategory);
 
   fetch("http://localhost:5678/api/works", {
     method: "POST",
@@ -208,7 +209,8 @@ form.addEventListener("submit", (e) => {
     .then((response) => response.json())
     .then((data) => {
       displayModalGallery();
-
+      getModal();
+      modalBtn2.click();
       console.log(data);
     });
 });

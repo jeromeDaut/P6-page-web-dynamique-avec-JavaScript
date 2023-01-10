@@ -1,3 +1,5 @@
+Jaber Sirraj
+13:43
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -19,12 +21,12 @@
 <body>
 	<!-- nav modal admin -->
 	<div id="edit" aria-hidden="true">
-		<button class ="modal-btn modal-trigger"><i class="fa-regular fa-pen-to-square" class="js-modal"></i></button>
+		<button class="modal-btn modal-trigger"><i class="fa-regular fa-pen-to-square" class="js-modal"></i></button>
 		<p>Mode édition</p>
 		<input type="submit" value="Publier les changements" id="ValidModal">
 	</div>
 	<!-- modal1 -->
-	<div class="modal-container" >
+	<div class="modal-container">
 		<div class="overlay modal-trigger"></div>
 		<div class="modal">
 			<button class="close-modal modal-trigger">X</button>
@@ -42,17 +44,17 @@
 		<div class="modal2">
 			<button class="close-modal modal-trigger">X</button>
 			<h2>Ajout photo</h2>
-			<form id="form" method="post" enctype="multipart/form-data" >
+			<form id="form" method="post" enctype="multipart/form-data">
 				<label for="workImg"></label>
 				<input type="file" accept="image/jpeg, image/png" name="image" id="workImg" value="+ Ajouter photo">
 				<label for="worktitle" class="title">Titre</label>
 				<input type="text" name="workTitle" id="workTitle">
 				<label for="workCategory">Catégorie</label>
 				<select name="workCategory" id="workCategory">
-					<option value=""></option>
-					<option value="objet">Objets</option>
-					<option value="Appartements">Appartements</option>
-					<option value="Hotels&Restaurants">Hotels</option>
+					<!-- <option value=""></option>
+					<option value="1">Objets</option>
+					<option value="2">Appartements</option>
+					<option value="3">Hotels</option> -->
 				</select>
 				<input type="submit" id="valid" value="Valider">
 			</form>
@@ -66,7 +68,7 @@
 				<li>projets</li>
 				<li>contact</li>
 				<li id="login"><a href="./login.html">login</a></li>
-				<li id="logout"><a href ="#" id="logoutLink">logout</a></li>
+				<li id="logout"><a href="#" id="logoutLink">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -89,10 +91,11 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes Projets</h2>
-			
 			<div class="project-btn">
-				 <button id="categoryBtn"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode édition</button>
+				<button class="project-btn"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode
+					édition</button>
 			</div>
+
 			<nav id="category">
 			</nav>
 			<div class="gallery">
