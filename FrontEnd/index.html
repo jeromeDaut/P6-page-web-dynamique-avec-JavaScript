@@ -41,22 +41,22 @@
 		<div class="overlay modal-trigger2"></div>
 		<div class="modal2">
 			<button class="close-modal modal-trigger">X</button>
-		<h2>Ajout photo</h2>
-		<form id="form" method="post" enctype="multipart/form-data" >
-			<label for="workImg"></label>
-			<input type="file" accept="image/jpeg, image/png" name="image" id="workImg" value="+ Ajouter photo">
-			<label for="worktitle" class="title">Titre</label>
-			<input type="text" name="workTitle" id="workTitle">
-			<label for="workCategory">Catégorie</label>
-			<select name="workCategory" id="workCategory">
-				<option value=""></option>
-				<option value="objet">Objets</option>
-				<option value="Appartements">Appartements</option>
-				<option value="Hotels&Restaurants">Hotels</option>
-			</select>
-			<input type="submit" id="valid" value="Valider">
-		</form>
-	</div>
+			<h2>Ajout photo</h2>
+			<form id="form" method="post" enctype="multipart/form-data" >
+				<label for="workImg"></label>
+				<input type="file" accept="image/jpeg, image/png" name="image" id="workImg" value="+ Ajouter photo">
+				<label for="worktitle" class="title">Titre</label>
+				<input type="text" name="workTitle" id="workTitle">
+				<label for="workCategory">Catégorie</label>
+				<select name="workCategory" id="workCategory">
+					<option value=""></option>
+					<option value="objet">Objets</option>
+					<option value="Appartements">Appartements</option>
+					<option value="Hotels&Restaurants">Hotels</option>
+				</select>
+				<input type="submit" id="valid" value="Valider">
+			</form>
+		</div>
 	</div>
 	<!-- ---------------------------------------------------------------------------- -->
 	<header>
@@ -89,10 +89,10 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes Projets</h2>
-			<div class="project-btn">
-			     <button class ="project-btn"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode édition</button>
-		    </div>
 			
+			<div class="project-btn">
+				 <button id="categoryBtn"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode édition</button>
+			</div>
 			<nav id="category">
 			</nav>
 			<div class="gallery">
