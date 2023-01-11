@@ -7,7 +7,8 @@ const category = document.getElementById("category");
 const gallery = document.querySelector(".gallery");
 const logout = document.getElementById("logoutLink");
 //event remove admin log
-logout.addEventListener("click", () => {
+logout.addEventListener("click", (e) => {
+  e.preventDefault();
   localStorage.removeItem("info");
   location.href = "/FrontEnd/";
 });
@@ -50,8 +51,8 @@ const getData = () => {
             `<button  data-cat = "${cat.id}" class="btn ">${cat.name}</button>`
         )
         .join("");
-
-      workCategory.innerHTML = `<option value="">Choisir une Catégorie </option> `;
+      // insert options
+      workCategory.innerHTML = `<option value=""> </option> `;
       workCategory.innerHTML += categoryData
         .map((cat) => `<option value="${cat.id}">${cat.name}</option>`)
         .join("");
@@ -113,23 +114,24 @@ const modalContainer = document.querySelector(".modal-container");
 const modalContainer2 = document.querySelector(".modal-container2");
 const modalBtn2 = document.querySelector(".modal-btn2");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
+const submitButton = document.querySelector(".valid");
+
 let currentId = 0;
-console.log(modalTriggers);
+
+// console.log(modalTriggers);
+
 modalTriggers.forEach((trigger) =>
   trigger.addEventListener("click", toggleModal)
 );
-// modalTriggersTwo.forEach((triggerTwo) =>
-//   triggerTwo.addEventListener("click", toggleModal)
-// );
-modalBtn2.addEventListener("click", () => {
-  modalContainer2.classList.toggle("active");
-  // modalContainer.classList.remove("active");
-});
-
 function toggleModal() {
   modalContainer.classList.toggle("active");
   modalContainer2.classList.remove("active");
 }
+
+modalBtn2.addEventListener("click", () => {
+  modalContainer2.classList.toggle("active");
+  // modalContainer.classList.remove("active");
+});
 
 const galleryMini = document.querySelector(".gallery-mini");
 //
@@ -140,15 +142,12 @@ const displayModalGallery = () => {
   for (const modal of modalData) {
     galleryMini.innerHTML += `
       <figure class = "figure" >
-      <i class="fa-regular fa-trash-can recycle" data-id = " ${modal.id}"></i>
+      <i class="fa-regular fa-trash-can recycle" id="deleteImg "data-id = " ${modal.id}"></i>
       <img crossorigin ="anonymous" src="${modal.imageUrl}" alt="${modal.title}" data-id ="${modal.id}">
       <a href="#modal2" class="editImg">éditer</a>
       </figure>
       `;
   }
-  // if () {
-
-  // }
 };
 
 const deleteWork = (id) => {
@@ -157,10 +156,12 @@ const deleteWork = (id) => {
     headers: {
       Authorization: "Bearer " + JSON.parse(localStorage.getItem("info")).token,
     },
-  }).then((response) => {
-    console.log(response);
-    getModal();
-  });
+  })
+    .then((response) => {
+      console.log(response);
+      getModal();
+    })
+    .catch((err) => console.log(err, "fetch error "));
 };
 
 // fetch modal
@@ -175,9 +176,12 @@ const getModal = () => {
       // delete individual img
       const recycleImg = document.getElementsByClassName("recycle");
       for (let i = 0; i < recycleImg.length; i++) {
-        recycleImg[i].addEventListener("click", () => {
+        recycleImg[i].addEventListener("click", (e) => {
+          e.preventDefault();
           currentId = recycleImg[i].getAttribute("data-id");
+          confirm(`Voulez-vous vraiment supprimer cette photo ?`);
           deleteWork(currentId);
+          // document.location.href = "";
         });
       }
     })
@@ -210,7 +214,44 @@ form.addEventListener("submit", (e) => {
     .then((data) => {
       displayModalGallery();
       getModal();
-      modalBtn2.click();
+
+      // modalBtn2.click();
       console.log(data);
-    });
+    })
+    .catch((err) => console.log(err, "fetch error "));
+});
+
+// optional button for clear input file----------------------------------------
+function clearInputFile() {
+  let inputFile = document.getElementById("workImg");
+  inputFile.value = null;
+  //Remove image from output
+  let output = document.getElementById("output");
+  output.src = "";
+  output.style.zIndex = "-2";
+}
+const resetBtnImage = document
+  .querySelector(".resetImg")
+  .addEventListener("click", clearInputFile);
+
+// -----------------------------------------------------------------------
+
+const submitBtn = document.querySelector(".valid");
+// color btn in green if form is valid
+submitButton.style.backgroundColor = "#A7A7A7";
+form.addEventListener(
+  "input",
+  () =>
+    (submitButton.style.backgroundColor = form.checkValidity()
+      ? "#1D6154"
+      : "#A7A7A7")
+);
+
+document.querySelector("#workImg").addEventListener("change", function () {
+  let output = document.querySelector("#output");
+  output.style.zIndex = "1";
+  output.src = URL.createObjectURL(this.files[0]);
+  output.addEventListener("load", function () {
+    URL.revokeObjectURL(output.src);
+  });
 });
