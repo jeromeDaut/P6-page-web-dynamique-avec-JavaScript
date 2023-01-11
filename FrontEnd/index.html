@@ -1,5 +1,3 @@
-Jaber Sirraj
-13:43
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,18 +19,23 @@ Jaber Sirraj
 <body>
 	<!-- nav modal admin -->
 	<div id="edit" aria-hidden="true">
-		<button class="modal-btn modal-trigger"><i class="fa-regular fa-pen-to-square" class="js-modal"></i></button>
-		<p>Mode édition</p>
+		<!-- btn for open modal -->
+		<button class="modal-btn modal-trigger"><i class="fa-regular fa-pen-to-square" class="js-modal"></i><p>Mode édition</p></button>
+		
 		<input type="submit" value="Publier les changements" id="ValidModal">
 	</div>
 	<!-- modal1 -->
 	<div class="modal-container">
+		<!-- grey background (overlay) -->
 		<div class="overlay modal-trigger"></div>
 		<div class="modal">
-			<button class="close-modal modal-trigger">X</button>
+			<!-- btn for close modal1 -->
+			<button class="close-modal modal-trigger " id="close">&times;</button>
 			<h2 id="title-modal">Gallerie photo</h2>
 			<div class="gallery-mini"></div>
+			<hr>
 			<div class="gallery-btn">
+				<!-- btn for open modal2 -->
 				<input class="modal-btn2 modal-trigger2" type="button" value="Ajouter une photo" id="addImageGalery">
 				<a href="#" class="deleteGal">supprimer la galerie</a>
 			</div>
@@ -42,21 +45,34 @@ Jaber Sirraj
 	<div class="modal-container2">
 		<div class="overlay modal-trigger2"></div>
 		<div class="modal2">
-			<button class="close-modal modal-trigger">X</button>
+			<!-- !!btn for return modal1  -->
+			<button onclick="toggleModal()"><=</button>
+			<!-- btn for close modal2 -->
+			<button class="close-modal modal-trigger">&times;</button>
 			<h2>Ajout photo</h2>
 			<form id="form" method="post" enctype="multipart/form-data">
-				<label for="workImg"></label>
-				<input type="file" accept="image/jpeg, image/png" name="image" id="workImg" value="+ Ajouter photo">
-				<label for="worktitle" class="title">Titre</label>
-				<input type="text" name="workTitle" id="workTitle">
-				<label for="workCategory">Catégorie</label>
-				<select name="workCategory" id="workCategory">
-					<!-- <option value=""></option>
-					<option value="1">Objets</option>
-					<option value="2">Appartements</option>
-					<option value="3">Hotels</option> -->
+				<!-- =========================== -->
+				<div class="img-container">
+					<button type ="reset" class="resetImg" style="color: red;">&times;</button>
+				<p><i class="fa-regular fa-image"></i></p>
+				<label for="workImg" id="btn-add-photo">+ Ajouter photo </label>
+				<input type="file" accept="image/jpg, image/png" id="workImg" name="image" style="display: none;" required>
+				<img id="output" >
+				<p class="format">jpg, png : 4mo max</p>
+				</div>
+				<!-- ============================== -->
+				
+				<label for="worktitle" class="label-title">Titre</label>
+				<input type="text" name="workTitle" id="workTitle" required>
+
+				<label for="workCategory" class="label-cat">Catégorie</label>
+				<select name="workCategory" id="workCategory" required>
 				</select>
-				<input type="submit" id="valid" value="Valider">
+
+				<hr>
+				<!-- btn for add img -->
+				<p class="error-message"></p>
+				<button class="valid" type="submit">Valider</button>
 			</form>
 		</div>
 	</div>
@@ -116,6 +132,58 @@ Jaber Sirraj
 		</section>
 	</main>
 
+	<!-- <form>
+		<label for="okimage">Ajouter Image</label>
+		<input type="file" accept="image/*" onchange="loadFile(event)" id="okimage" style="display:none;">
+
+		<img src="https://customercare.igloosoftware.com/.api2/api/v1/communities/10068556/previews/thumbnails/4fc20722-5368-e911-80d5-b82a72db46f2?width=680&height=680&crop=False"
+			id="output" />
+
+	</form>
+
+	<script>
+		var loadFile = function (event) {
+			var output = document.getElementById('output');
+			output.src = URL.createObjectURL(event.target.files[0]);
+			output.onload = function () {
+				URL.revokeObjectURL(output.src) // free memory
+			}
+		};
+	</script> -->
+	<!-- <form>
+		<label for="okimage">Ajouter Image</label>
+		<input type="file" accept="image/*" id="okimage" style="visibility:hidden;">
+		<img id="output"/>
+	  </form> -->
+	  
+	  <!-- <script>
+		const validBtn= document.querySelector('.valid')
+		document.querySelector('#workImg').addEventListener('change', function(){
+		  let output = document.querySelector('#output');
+		  output.style.zIndex="1";
+		  output.src = URL.createObjectURL(this.files[0]);
+		  output.addEventListener('load', function(){
+			URL.revokeObjectURL(output.src);
+			// validBtn.style.background="#1D6154";
+		  });
+		});
+	  </script> -->
+
+	<!-- <input type="file" accept="image/*" onchange="loadFile(event)" id= "ImgInput">
+	<button for=""></button>
+	<img src="" id="output"/>
+
+
+
+	<script>
+	  var loadFile = function(event) {
+		var output = document.getElementById('output');
+		output.src = URL.createObjectURL(event.target.files[0]);
+		output.onload = function() {
+		  URL.revokeObjectURL(output.src) // free memory
+		}
+	  };
+	</script> -->
 	<footer>
 		<nav>
 			<ul>
