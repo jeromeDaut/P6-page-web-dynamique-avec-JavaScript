@@ -252,24 +252,24 @@ footer nav ul {
 /* %%%%%%%%%%%%%%%%%%%%%%%---MODAL----%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
 /* nav admin */
-.modal-btn + .modal-btn2 {
-	background-color: black;
+.modal-btn  {
+	background: black;
 	border: 0;
 	/* padding: 0; */
-	width: max-content;
+	/* width: max-content; */
 	cursor: pointer;
-	/* display: block; */
+	display: flex;
 }
 #edit p {
 	color: white;
 	align-self: center;
-	margin: 0 10px;
+	margin: 0 10px 0 0;
 }
 #edit input{
 	padding: 5px 20px;
 }
 /* modal */
-.modal-container  {
+.modal-container, .modal-container2  {
 	display: none;
 	/* visibility: hidden; */
 	position: fixed;
@@ -277,15 +277,7 @@ footer nav ul {
 	width: 100vw;
 	height: 100vh;
 }
-.modal-container2{
-	display: none;
-	/* visibility: hidden; */
-	position: fixed;
-	top: 0;
-	width: 100vw;
-	height: 100vh;
-	
-}
+
 .modal-container.active{
 	display: block;
 	/* visibility: visible; */
@@ -295,43 +287,27 @@ footer nav ul {
 	/* z-index: 6; */
 
 }
-.overlay {
+.overlay, .overlay2 {
 position: absolute;
 width: 100%;
 height: 100%;
 background: #333333d3;
 }
-.overlay2{
-	position: absolute;
-width: 100%;
-height: 100%;
-background: #333333d3;
-}
-.modal {
+
+.modal, .modal2 {
 	width: 40%;
-	height: 550px;
+	min-height: 500px;
 	max-width: 500px;
 	min-width: 300px;
 	background: #fff;
 	border-radius: 5px;
 	position: absolute;
-	top: 40%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50% );
+	padding:0 5%;
 }
-.modal2 {
-	
-	width: 40%;
-	height: 550px;
-	max-width: 500px;
-	min-width: 300px;
-	background: #fff;
-	border-radius: 5px;
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	transform: translate(-50%, -50% );
-}
+
 #form{
 	display: flex;
 	flex-direction: column;
@@ -340,16 +316,15 @@ background: #333333d3;
 #workImg{
 align-self: center;
 }
-#workTitle{
-	/* display: flex; */
-	width: 20%;
-	/* text-align: center; */
-	/* align-self: center; */
-	border: 1px black solid;
+#workTitle, #workCategory{
+	width: 100%;
+	height: 50px;
+	border: 0px solid;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin:10px 0 50px 0;
 }
-#workCategory{
-	width: 30%;
-}
+
 .close-modal {
 	padding: 8px 10px;
 	border: none;
@@ -360,20 +335,14 @@ align-self: center;
 	cursor: pointer;
 	background: #fff;
 }
-.modal h2 {
+.modal h2, .modal2 h2 {
 	text-align: center;
 	margin: 20px;
 	padding-top: 20px;
 	color: black;
 	font-size: 26px;
 }
-.modal2 h2 {
-	text-align: center;
-	margin: 20px;
-	padding-top: 20px;
-	color: black;
-	font-size: 26px;
-}
+
 .gallery-mini{
 	width: 100%;
 	display: flex;
@@ -381,6 +350,7 @@ align-self: center;
 	flex-wrap: wrap;
 	margin-top: 25px;
 	margin: 0 auto;
+	padding-bottom: 5%;
 	/* margin-left: 3%; */
 }
 
@@ -393,6 +363,7 @@ position: relative;
 	height: 104px;
 	width: 78px;
 	margin: 10px;
+	object-fit: cover;
 	
 }
 .recycle{
@@ -427,7 +398,87 @@ width: 40%;
 	flex-direction: column;
 	text-align: center;
 }
+#addImageGalery{
+	border: none;
+	background: #1D6154;
+    border-radius: 60px;
+	width: 150px;
+	padding: 5px;
+	color: white;
+	align-self: center;
+	margin: 3% 0;
+}
 .project-btn{
 	text-align: center;
 	
+}
+/* =========== */
+.img-container{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	/* height: 194px; */
+	background: #E8F1F7;
+    border-radius: 3px;
+	margin-bottom: 50px;
+}
+#output{
+	object-fit: cover;
+	width: 172px;
+	height: 193px;
+	align-self: center;
+	z-index: -1;
+	border: 0;
+}
+#btn-add-photo{
+	position: absolute;
+	bottom: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	width: 173px;
+	height: 36px;
+	background: #CBD6DC;
+	color: #306685;
+	border-radius: 50px;
+}
+.fa-image{
+	position: absolute;
+	left: 45%;
+	top: 30%;
+	font-size: 50px;
+	color: #306685;
+}
+.format{
+	position: absolute;
+	align-self: center;
+	color: #444444;
+	bottom: 7%;
+}
+.label-title, .label-cat{
+	font-size: 14px;
+	font-weight: 500;
+}
+.valid{
+	/* background: #A7A7A7; */
+	border-radius: 60px;
+	width: 237px;
+	height: 36px;
+	color: white;
+	border: 0;
+	align-self: center;
+	margin-bottom: 35px;
+	font-weight: 700;
+}
+.resetImg{
+	position: absolute;
+	top:6px;
+	right: 34%;
+	z-index: 2;
+	font-size: 25px;
+	border: 0;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.2);
 }
