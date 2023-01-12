@@ -1,200 +1,179 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/73abb5c897.js"
+      crossorigin="anonymous"
+    ></script>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-		rel="stylesheet">
-	<script src="https://kit.fontawesome.com/73abb5c897.js" crossorigin="anonymous"></script>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
 
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+  <body>
+    <!-- nav modal admin -->
+    <div id="edit" aria-hidden="true">
+      <!-- btn for open modal -->
+      <button class="modal-btn modal-trigger">
+        <i class="fa-regular fa-pen-to-square" class="js-modal"></i>
+        <p>Mode édition</p>
+      </button>
 
-</head>
+      <input type="submit" value="Publier les changements" id="ValidModal" />
+    </div>
+    <!-- modal1 -->
+    <div class="modal-container" id="modal1">
+      <!-- grey background (overlay) -->
+      <div class="overlay modal-trigger"></div>
+      <div class="modal">
+        <!-- btn for close modal1 -->
+        <button class="close-modal modal-trigger" id="close">&times;</button>
+        <h2 id="title-modal">Gallerie photo</h2>
+        <div class="gallery-mini"></div>
+        <hr />
+        <div class="gallery-btn">
+          <!-- btn for open modal2 -->
+          <input
+            class="modal-btn2 modal-trigger2"
+            type="button"
+            value="Ajouter une photo"
+            id="addImageGalery"
+          />
+          <a href="#" class="deleteGal">supprimer la galerie</a>
+        </div>
+      </div>
+    </div>
+    <!-- modal2 -->
+    <div class="modal-container2">
+      <div class="overlay modal-trigger2"></div>
+      <div class="modal2">
+        <!-- !!btn for return modal1  -->
+        <!-- <div class="btns-close-retour"> -->
+        <button class="return-modal1">
+          <i class="fa-solid fa-arrow-left-long"></i>
+        </button>
+        <!-- btn for close modal2 -->
+        <button class="close-modal modal-trigger">&times;</button>
+        <!-- </div> -->
+        <h2>Ajout photo</h2>
+        <form id="form" method="post" enctype="multipart/form-data">
+          <!-- =========================== -->
+          <div class="img-container">
+            <button type="reset" class="resetImg" style="color: red">
+              &times;
+            </button>
+            <p><i class="fa-regular fa-image"></i></p>
+            <label for="workImg" id="btn-add-photo">+ Ajouter photo </label>
+            <input
+              type="file"
+              accept="image/jpg, image/png"
+              id="workImg"
+              name="image"
+              style="display: none"
+              required
+            />
+            <img id="output" />
+            <p class="format">jpg, png : 4mo max</p>
+          </div>
+          <!-- ============================== -->
 
-<body>
-	<!-- nav modal admin -->
-	<div id="edit" aria-hidden="true">
-		<!-- btn for open modal -->
-		<button class="modal-btn modal-trigger"><i class="fa-regular fa-pen-to-square" class="js-modal"></i><p>Mode édition</p></button>
-		
-		<input type="submit" value="Publier les changements" id="ValidModal">
-	</div>
-	<!-- modal1 -->
-	<div class="modal-container">
-		<!-- grey background (overlay) -->
-		<div class="overlay modal-trigger"></div>
-		<div class="modal">
-			<!-- btn for close modal1 -->
-			<button class="close-modal modal-trigger " id="close">&times;</button>
-			<h2 id="title-modal">Gallerie photo</h2>
-			<div class="gallery-mini"></div>
-			<hr>
-			<div class="gallery-btn">
-				<!-- btn for open modal2 -->
-				<input class="modal-btn2 modal-trigger2" type="button" value="Ajouter une photo" id="addImageGalery">
-				<a href="#" class="deleteGal">supprimer la galerie</a>
-			</div>
-		</div>
-	</div>
-	<!-- modal2 -->
-	<div class="modal-container2">
-		<div class="overlay modal-trigger2"></div>
-		<div class="modal2">
-			<!-- !!btn for return modal1  -->
-			<button onclick="toggleModal()"><=</button>
-			<!-- btn for close modal2 -->
-			<button class="close-modal modal-trigger">&times;</button>
-			<h2>Ajout photo</h2>
-			<form id="form" method="post" enctype="multipart/form-data">
-				<!-- =========================== -->
-				<div class="img-container">
-					<button type ="reset" class="resetImg" style="color: red;">&times;</button>
-				<p><i class="fa-regular fa-image"></i></p>
-				<label for="workImg" id="btn-add-photo">+ Ajouter photo </label>
-				<input type="file" accept="image/jpg, image/png" id="workImg" name="image" style="display: none;" required>
-				<img id="output" >
-				<p class="format">jpg, png : 4mo max</p>
-				</div>
-				<!-- ============================== -->
-				
-				<label for="worktitle" class="label-title">Titre</label>
-				<input type="text" name="workTitle" id="workTitle" required>
+          <label for="worktitle" class="label-title">Titre</label>
+          <input type="text" name="workTitle" id="workTitle" required />
 
-				<label for="workCategory" class="label-cat">Catégorie</label>
-				<select name="workCategory" id="workCategory" required>
-				</select>
+          <label for="workCategory" class="label-cat">Catégorie</label>
+          <select name="workCategory" id="workCategory" required></select>
 
-				<hr>
-				<!-- btn for add img -->
-				<p class="error-message"></p>
-				<button class="valid" type="submit">Valider</button>
-			</form>
-		</div>
-	</div>
-	<!-- ---------------------------------------------------------------------------- -->
-	<header>
-		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-		<nav>
-			<ul>
-				<li>projets</li>
-				<li>contact</li>
-				<li id="login"><a href="./login.html">login</a></li>
-				<li id="logout"><a href="#" id="logoutLink">logout</a></li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
-		<section id="introduction">
-			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
-			</figure>
-			<article>
-				<h2>Designer d'espace</h2>
-				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
-					finale du chantier.</p>
-				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
-					couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-					chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
-					décorateur(trice)</p>
-			</article>
-		</section>
-		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<div class="project-btn">
-				<button class="project-btn"><i class="fa-regular fa-pen-to-square" class="js-modal"></i>Mode
-					édition</button>
-			</div>
+          <hr />
+          <!-- btn for add img -->
+          <p class="error-message"></p>
+          <button class="valid" type="submit">Valider</button>
+        </form>
+      </div>
+    </div>
+    <!-- ---------------------------------------------------------------------------- -->
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav>
+        <ul>
+          <li>projets</li>
+          <li>contact</li>
+          <li id="login"><a href="./login.html">login</a></li>
+          <li id="logout"><a href="#" id="logoutLink">logout</a></li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="introduction">
+        <figure>
+          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <button id="profil-btn" class="project-btn">
+            <i class="fa-regular fa-pen-to-square"></i>Mode édition
+          </button>
+        </figure>
+        <article>
+          <button id="article-btn" class="project-btn">
+            <i class="fa-regular fa-pen-to-square"></i>Mode édition
+          </button>
+          <h2>Designer d'espace</h2>
+          <p>
+            Je raconte votre histoire, je valorise vos idées. Je vous accompagne
+            de la conception à la livraison finale du chantier.
+          </p>
+          <p>
+            Chaque projet sera étudié en commun, de façon à mettre en valeur les
+            volumes, les matières et les couleurs dans le respect de l’esprit
+            des lieux et le choix adapté des matériaux. Le suivi du chantier
+            sera assuré dans le souci du détail, le respect du planning et du
+            budget.
+          </p>
+          <p>
+            En cas de besoin, une équipe pluridisciplinaire peut-être constituée
+            : architecte DPLG, décorateur(trice)
+          </p>
+        </article>
+      </section>
+      <section id="portfolio">
+        <div class="edit-mod">
+          <h2>Mes Projets</h2>
+          <button id="project-btn" class="project-btn">
+            <i class="fa-regular fa-pen-to-square"></i>Mode édition
+          </button>
+        </div>
 
-			<nav id="category">
-			</nav>
-			<div class="gallery">
-			</div>
-		</section>
-		<section id="contact">
-			<h2>Contact</h2>
-			<p>Vous avez un projet ? Discutons-en !</p>
-			<form action="#" method="post">
-				<label for="name">Nom</label>
-				<input type="text" name="name" id="name">
-				<label for="email">Email</label>
-				<input type="email" name="email" id="email">
-				<label for="message">Message</label>
-				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input type="submit" value="Envoyer">
-			</form>
-		</section>
-	</main>
-
-	<!-- <form>
-		<label for="okimage">Ajouter Image</label>
-		<input type="file" accept="image/*" onchange="loadFile(event)" id="okimage" style="display:none;">
-
-		<img src="https://customercare.igloosoftware.com/.api2/api/v1/communities/10068556/previews/thumbnails/4fc20722-5368-e911-80d5-b82a72db46f2?width=680&height=680&crop=False"
-			id="output" />
-
-	</form>
-
-	<script>
-		var loadFile = function (event) {
-			var output = document.getElementById('output');
-			output.src = URL.createObjectURL(event.target.files[0]);
-			output.onload = function () {
-				URL.revokeObjectURL(output.src) // free memory
-			}
-		};
-	</script> -->
-	<!-- <form>
-		<label for="okimage">Ajouter Image</label>
-		<input type="file" accept="image/*" id="okimage" style="visibility:hidden;">
-		<img id="output"/>
-	  </form> -->
-	  
-	  <!-- <script>
-		const validBtn= document.querySelector('.valid')
-		document.querySelector('#workImg').addEventListener('change', function(){
-		  let output = document.querySelector('#output');
-		  output.style.zIndex="1";
-		  output.src = URL.createObjectURL(this.files[0]);
-		  output.addEventListener('load', function(){
-			URL.revokeObjectURL(output.src);
-			// validBtn.style.background="#1D6154";
-		  });
-		});
-	  </script> -->
-
-	<!-- <input type="file" accept="image/*" onchange="loadFile(event)" id= "ImgInput">
-	<button for=""></button>
-	<img src="" id="output"/>
-
-
-
-	<script>
-	  var loadFile = function(event) {
-		var output = document.getElementById('output');
-		output.src = URL.createObjectURL(event.target.files[0]);
-		output.onload = function() {
-		  URL.revokeObjectURL(output.src) // free memory
-		}
-	  };
-	</script> -->
-	<footer>
-		<nav>
-			<ul>
-				<li>Mentions Légales</li>
-			</ul>
-		</nav>
-	</footer>
-	<script src="./index.js"></script>
-	<!-- <script src="./login.js"></script> -->
-	<!-- <script src="./modal.js"></script> -->
-	<!-- <script src="./assets/script.js"></script> -->
-</body>
-
+        <nav id="category"></nav>
+        <div class="gallery"></div>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+          <label for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <input type="submit" value="Envoyer" />
+        </form>
+      </section>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+    <script src="./index.js"></script>
+  </body>
 </html>
