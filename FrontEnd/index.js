@@ -89,19 +89,19 @@ let info = localStorage.getItem("info")
 const bannerAdmin = document.getElementById("edit");
 const loginDisplay = document.getElementById("login");
 const logoutDisplay = document.getElementById("logout");
-const btnProject = document.querySelector(".project-btn");
+const btnProject = document.querySelectorAll(".project-btn");
+//loop to display all btnProject
+btnProject.forEach((btn) => (btn.style.display = "none"));
 
 logoutDisplay.style.display = "none";
 bannerAdmin.style.display = "none";
-btnProject.style.display = "none";
 // display Admin tools
 const adminDisplay = () => {
   if (info != null) {
     bannerAdmin.removeAttribute("style", "display: none;");
     logoutDisplay.removeAttribute("style", "display: none");
-    btnProject.removeAttribute("style", "display: none");
     loginDisplay.setAttribute("style", "display: none;");
-
+    btnProject.forEach((btn) => (btn.style.display = "block"));
     category.style.display = "none";
   }
 };
@@ -115,11 +115,16 @@ const modalContainer2 = document.querySelector(".modal-container2");
 const modalBtn2 = document.querySelector(".modal-btn2");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
 const submitButton = document.querySelector(".valid");
-
+const returnBtnModal1 = document.querySelector(".return-modal1");
+// const deleteGallery = document.querySelector(".deleteGal");
 let currentId = 0;
 
-// console.log(modalTriggers);
-
+// event to return modal 1
+returnBtnModal1.addEventListener("click", () => {
+  modalContainer2.classList.remove("active");
+  modalContainer.classList.add("active");
+});
+// display modal
 modalTriggers.forEach((trigger) =>
   trigger.addEventListener("click", toggleModal)
 );
@@ -130,7 +135,7 @@ function toggleModal() {
 
 modalBtn2.addEventListener("click", () => {
   modalContainer2.classList.toggle("active");
-  // modalContainer.classList.remove("active");
+  modalContainer.classList.remove("active");
 });
 
 const galleryMini = document.querySelector(".gallery-mini");
@@ -159,7 +164,7 @@ const deleteWork = (id) => {
   })
     .then((response) => {
       console.log(response);
-      getModal();
+      // getModal();
     })
     .catch((err) => console.log(err, "fetch error "));
 };
@@ -221,23 +226,8 @@ form.addEventListener("submit", (e) => {
     .catch((err) => console.log(err, "fetch error "));
 });
 
-// optional button for clear input file----------------------------------------
-function clearInputFile() {
-  let inputFile = document.getElementById("workImg");
-  inputFile.value = null;
-  //Remove image from output
-  let output = document.getElementById("output");
-  output.src = "";
-  output.style.zIndex = "-2";
-}
-const resetBtnImage = document
-  .querySelector(".resetImg")
-  .addEventListener("click", clearInputFile);
-
-// -----------------------------------------------------------------------
-
-const submitBtn = document.querySelector(".valid");
 // color btn in green if form is valid
+const submitBtn = document.querySelector(".valid");
 submitButton.style.backgroundColor = "#A7A7A7";
 form.addEventListener(
   "input",
@@ -247,11 +237,29 @@ form.addEventListener(
       : "#A7A7A7")
 );
 
+const resetBtnImage = document.querySelector(".resetImg");
+
+resetBtnImage.style.visibility = "hidden"; // Hide the reset button by default
+
+// function to display and select an image to add to the gallery
 document.querySelector("#workImg").addEventListener("change", function () {
   let output = document.querySelector("#output");
   output.style.zIndex = "1";
-  output.src = URL.createObjectURL(this.files[0]);
+  output.src = URL.createObjectURL(this.files[0]); //URL that points to the selected file
   output.addEventListener("load", function () {
-    URL.revokeObjectURL(output.src);
+    URL.revokeObjectURL(output.src); //to revoke the URL created by URL.createObjectURL(this.files[0]) to free memory
   });
+  resetBtnImage.style.visibility = "visible"; // Show the reset button when an image is selected
 });
+// function to reset the selected image
+function clearInputFile() {
+  let inputFile = document.getElementById("workImg");
+  inputFile.value = null;
+  //Remove image from output
+  let output = document.getElementById("output");
+  output.src = "";
+  output.style.zIndex = "-2";
+  resetBtnImage.style.visibility = "hidden"; // Hide the reset button when the image is cleared
+}
+
+resetBtnImage.addEventListener("click", clearInputFile);
