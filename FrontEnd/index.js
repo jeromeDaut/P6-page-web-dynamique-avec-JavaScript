@@ -1,7 +1,6 @@
 let categoryData = [];
 let worksData = [];
 let currentCat = 0;
-// let modal = null;
 
 const category = document.getElementById("category");
 const gallery = document.querySelector(".gallery");
@@ -26,7 +25,7 @@ const displayWorks = () => {
     }
   }
 };
-// color filter
+// for color btns selected
 const stylerFilter = () => {
   const allBtn = category.getElementsByTagName("button");
   for (let i = 0; i < allBtn.length; i++) {
@@ -36,7 +35,7 @@ const stylerFilter = () => {
     }
   }
 };
-// datafetch for buttons and gallery:
+// datafetch for the category and the gallery:
 const getData = () => {
   // button
   fetch("http://localhost:5678/api/categories")
@@ -51,7 +50,7 @@ const getData = () => {
             `<button  data-cat = "${cat.id}" class="btn ">${cat.name}</button>`
         )
         .join("");
-      // insert options
+      // insert categories options to modal 2
       workCategory.innerHTML = `<option value=""> </option> `;
       workCategory.innerHTML += categoryData
         .map((cat) => `<option value="${cat.id}">${cat.name}</option>`)
@@ -60,7 +59,7 @@ const getData = () => {
       const allBtn = category.getElementsByTagName("button");
 
       for (let i = 0; i < allBtn.length; i++) {
-        // event btns
+        // To select all buttons and add filters
         allBtn[i].addEventListener("click", () => {
           currentCat = allBtn[i].getAttribute("data-cat");
           stylerFilter();
@@ -109,14 +108,13 @@ const adminDisplay = () => {
 adminDisplay();
 // =====================================================
 // =====================================================
-// MODAL
+// SECTION MODALS
 const modalContainer = document.querySelector(".modal-container");
 const modalContainer2 = document.querySelector(".modal-container2");
 const modalBtn2 = document.querySelector(".modal-btn2");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
 const submitButton = document.querySelector(".valid");
 const returnBtnModal1 = document.querySelector(".return-modal1");
-// const deleteGallery = document.querySelector(".deleteGal");
 let currentId = 0;
 
 // event to return modal 1
@@ -164,7 +162,7 @@ const deleteWork = (id) => {
   })
     .then((response) => {
       console.log(response);
-      // getModal();
+      getModal();
     })
     .catch((err) => console.log(err, "fetch error "));
 };
@@ -186,15 +184,29 @@ const getModal = () => {
           currentId = recycleImg[i].getAttribute("data-id");
           confirm(`Voulez-vous vraiment supprimer cette photo ?`);
           deleteWork(currentId);
-          // document.location.href = "";
         });
       }
+    })
+    //delete gallery in modal 1:
+    .then(() => {
+      const deleteGal = document.querySelector(".deleteGal");
+      const galleryMini = document.querySelector(".gallery-mini");
+      // select all the images to be deleted
+      deleteGal.addEventListener("click", (e) => {
+        e.preventDefault();
+        confirm("Voulez-vous supprimer toute la gallerie ?");
+        const allIds = galleryMini.querySelectorAll("[data-id]");
+        allIds.forEach((img) => {
+          const id = img.getAttribute("data-id");
+          deleteWork(id);
+        });
+      });
     })
     .catch((err) => console.log(err, "fetch error "));
 };
 getModal();
 
-//  submit form
+//  submit form in modal 2
 const form = document.getElementById("form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -219,8 +231,6 @@ form.addEventListener("submit", (e) => {
     .then((data) => {
       displayModalGallery();
       getModal();
-
-      // modalBtn2.click();
       console.log(data);
     })
     .catch((err) => console.log(err, "fetch error "));
@@ -229,13 +239,14 @@ form.addEventListener("submit", (e) => {
 // color btn in green if form is valid
 const submitBtn = document.querySelector(".valid");
 submitButton.style.backgroundColor = "#A7A7A7";
-form.addEventListener(
-  "input",
-  () =>
-    (submitButton.style.backgroundColor = form.checkValidity()
-      ? "#1D6154"
-      : "#A7A7A7")
-);
+form.addEventListener("input", () => {
+  if (form.checkValidity()) {
+    submitButton.style.backgroundColor = "#1D6154";
+    submitButton.style.cursor = "pointer";
+  } else {
+    submitButton.style.backgroundColor = "#A7A7A7";
+  }
+});
 
 const resetBtnImage = document.querySelector(".resetImg");
 
@@ -251,7 +262,7 @@ document.querySelector("#workImg").addEventListener("change", function () {
   });
   resetBtnImage.style.visibility = "visible"; // Show the reset button when an image is selected
 });
-// function to reset the selected image
+// function to reset the selected image in modal 2
 function clearInputFile() {
   let inputFile = document.getElementById("workImg");
   inputFile.value = null;
