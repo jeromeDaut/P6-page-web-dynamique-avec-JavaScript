@@ -565,6 +565,7 @@ footer nav ul {
   font-weight: 700;
 }
 .resetImg {
+  color: red;
   visibility: hidden;
   position: absolute;
   top: 6px;
