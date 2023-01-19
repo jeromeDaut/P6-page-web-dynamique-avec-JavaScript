@@ -255,7 +255,7 @@ nav a:hover {
   margin-right: 10px;
   outline: none;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
 }
 #portfolio .active {
   background: #1d6154;
@@ -276,6 +276,16 @@ body .gallery {
 
 .gallery img {
   width: 100%;
+}
+body h1 {
+  padding-left: 5%;
+}
+body nav {
+  padding-right: 5%;
+}
+article p {
+  padding-right: 12%;
+  text-align: justify;
 }
 #contact {
   width: 50%;
