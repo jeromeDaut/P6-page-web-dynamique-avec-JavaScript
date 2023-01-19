@@ -245,6 +245,7 @@ nav a:hover {
   display: flex;
   justify-content: center;
   margin-bottom: 2.5em;
+  padding: 0;
 }
 #portfolio button {
   background: white;
