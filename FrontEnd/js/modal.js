@@ -86,8 +86,6 @@ form.addEventListener("submit", (e) => {
     .then((response) => response.json())
     .then((data) => {
       displayModalGallery();
-      // getModal();
-      // console.log(data);
       getData();
 
       e.target.workTitle.value = "";
