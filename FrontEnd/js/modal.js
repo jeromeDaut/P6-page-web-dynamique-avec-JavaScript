@@ -112,6 +112,20 @@ form.addEventListener("submit", (e) => {
     })
     .catch((err) => console.log(err, "fetch error "));
 });
+// add select in form :
+const button = document.querySelector(".valid");
+const label = document.createElement("label");
+label.setAttribute("for", "workCategory");
+label.setAttribute("class", "label-cat");
+label.innerHTML = "Catégorie";
+form.insertBefore(label, button);
+
+
+const select = document.createElement("select");
+select.setAttribute("name", "workCategory");
+select.setAttribute("id", "workCategory");
+select.setAttribute("required", "");
+form.insertBefore(select, button);
 
 // color btn in green if form is valid
 const submitBtn = document.querySelector(".valid");
