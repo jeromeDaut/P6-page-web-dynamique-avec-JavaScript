@@ -30,7 +30,13 @@ modalBtn2.addEventListener("click", () => {
   modalContainer2.classList.toggle("active");
   modalContainer.classList.remove("active");
 });
+// close 
+const closeButton = document.querySelector("#close");
 
+closeButton.addEventListener("click", () => {
+  modalContainer.classList.remove("active");
+  modalContainer2.classList.remove("active");
+});
 const galleryMini = document.querySelector(".gallery-mini");
 //
 
