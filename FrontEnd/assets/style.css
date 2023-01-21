@@ -345,6 +345,8 @@ footer nav ul {
   border: 0;
   cursor: pointer;
   display: flex;
+  color: white;
+  align-items: center;
 }
 #edit p {
   color: white;
@@ -614,7 +616,7 @@ figure {
   flex-direction: column;
 }
 figure #profil-btn {
-  align-self: start;
+  align-self: flex-start;
   margin-left: 8%;
   margin-top: 20px;
 }
