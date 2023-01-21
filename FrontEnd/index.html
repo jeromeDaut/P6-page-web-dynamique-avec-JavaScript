@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" >
     <title>Sophie Bluel - Architecte d'intérieur</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
-    />
+    >
     <script
       src="https://kit.fontawesome.com/73abb5c897.js"
       crossorigin="anonymous"
     ></script>
 
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="./assets/style.css" />
+    <meta name="description" content="" >
+    <link rel="stylesheet" href="./assets/style.css" >
   </head>
 
   <body>
@@ -24,13 +24,13 @@
     <div id="edit" aria-hidden="true">
       <!-- btn for open modal -->
       <button class="modal-btn modal-trigger">
-        <i class="fa-regular fa-pen-to-square" class="js-modal"></i>
-        <p>Mode édition</p>
+        <i class="fa-regular fa-pen-to-square js-modal"></i>
+        Mode édition
       </button>
 
-      <input type="submit" value="Publier les changements" id="ValidModal" />
+      <input type="submit" value="Publier les changements" id="ValidModal">
     </div>
-    <!-- modal1 --------------------------------------------------------------->
+    <!-- modal1 ============================================================-->
     <div class="modal-container" id="modal1">
       <!-- grey background (overlay) -->
       <div class="overlay modal-trigger"></div>
@@ -39,7 +39,7 @@
         <button class="close-modal modal-trigger" id="close">&times;</button>
         <h2 id="title-modal">Gallerie photo</h2>
         <div class="gallery-mini"></div>
-        <hr />
+        <hr>
         <div class="gallery-btn">
           <!-- btn for open modal2 -->
           <input
@@ -47,12 +47,12 @@
             type="button"
             value="Ajouter une photo"
             id="addImageGalery"
-          />
+          >
           <a href="#" class="deleteGal">supprimer la galerie</a>
         </div>
       </div>
     </div>
-    <!-- modal2 ------------------------------------------------------------------------>
+    <!-- modal2 =========================================================-->
     <div class="modal-container2">
       <div class="overlay modal-trigger2"></div>
       <div class="modal2">
@@ -65,8 +65,8 @@
         <button class="close-modal modal-trigger">&times;</button>
         <!-- </div> -->
         <h2>Ajout photo</h2>
+        <!-- FORM============================================================ -->
         <form id="form" method="post" enctype="multipart/form-data">
-          <!-- =========================== -->
           <div class="img-container">
             <button type="reset" class="resetImg">&times;</button>
             <p><i class="fa-regular fa-image"></i></p>
@@ -77,25 +77,21 @@
               id="workImg"
               name="image"
               required
-            />
-            <img id="output" />
+            >
+            <img src ="./" id="output" alt="mini-galerie">
             <p class="format">jpg, png : 4mo max</p>
           </div>
-          <!-- ============================== -->
-
-          <label for="worktitle" class="label-title">Titre</label>
-          <input type="text" name="workTitle" id="workTitle" required />
-
-          <label for="workCategory" class="label-cat">Catégorie</label>
-          <select name="workCategory" id="workCategory" required></select>
-
-          <hr />
+          
+          <label for="workTitle" class="label-title">Titre</label>
+          <input type="text" name="workTitle" id="workTitle" required>
+         
+          <hr >
           <!-- btn for add img -->
           <button class="valid" type="submit">Valider</button>
         </form>
+        <!-- =============================================================== -->
       </div>
     </div>
-    <!-- ---------------------------------------------------------------------------- -->
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
@@ -104,14 +100,14 @@
           <li>contact</li>
           <li id="login"><a href="./login.html">login</a></li>
           <li id="logout"><a href="#" id="logoutLink">logout</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" ></li>
         </ul>
       </nav>
     </header>
     <main>
       <section id="introduction">
         <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <img src="./assets/images/sophie-bluel.png" alt="" >
           <button id="profil-btn" class="project-btn">
             <i class="fa-regular fa-pen-to-square"></i>Mode édition
           </button>
@@ -154,12 +150,12 @@
         <p>Vous avez un projet ? Discutons-en !</p>
         <form action="#" method="post">
           <label for="name">Nom</label>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" >
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" >
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+          <input type="submit" value="Envoyer" >
         </form>
       </section>
     </main>
