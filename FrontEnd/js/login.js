@@ -31,15 +31,16 @@ login.addEventListener("click", () => {
       console.log(response);
       if (response.userId) {
         localStorage.setItem("info", JSON.stringify(response));
-         document.location.href = "/FrontEnd/";
+        document.location.href = "/FrontEnd/";
       } else if (response.message) {
         alert("Mail  invalide");
       } else {
         alert("Mot de passe invalide");
       }
-    }).catch(function (err) {
-      console.log(err)
-      alert("Veuillez nous exuser Erreur System ")
-  });
+    })
+    .catch(function (err) {
+      console.log(err);
+      alert("Veuillez nous excuser Erreur System ");
+    });
   // console.log(body);
 });
