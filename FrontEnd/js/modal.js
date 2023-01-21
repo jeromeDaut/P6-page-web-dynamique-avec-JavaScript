@@ -69,7 +69,24 @@ form.addEventListener("submit", (e) => {
   const image = e.target.workImg.files[0];
   const workTitle = e.target.workTitle.value;
   const workCategory = Number(e.target.workCategory.value);
+  // -------------------------------------------------------------
+  // if we want to use JavaScript instead of HTML for verification
+  // -------------------------------------------------------------
+  // if (!image) {
+  //   alert("Veuillez choisir une image");
+  //   return;
+  // }
 
+  // if (!workTitle) {
+  //   alert("Veuillez choisir un titre ");
+  //   return;
+  // }
+
+  // if (workCategory == "") {
+  //   alert("Veuillez choisir une categorie");
+  //   return;
+  // }
+  // -------------------------------------------------------------
   const data = new FormData();
   data.append("image", image);
   data.append("title", workTitle);
