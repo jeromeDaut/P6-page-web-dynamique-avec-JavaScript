@@ -3,7 +3,7 @@ const logout = document.getElementById("logoutLink");
 logout.addEventListener("click", (e) => {
   e.preventDefault();
   localStorage.removeItem("info");
-  location.href = "/FrontEnd/";
+  location.href = "/";
 });
 
 // get token and id

@@ -31,7 +31,7 @@ login.addEventListener("click", () => {
       console.log(response);
       if (response.userId) {
         localStorage.setItem("info", JSON.stringify(response));
-        document.location.href = "/FrontEnd/";
+        document.location.href = "/";
       } else if (response.message) {
         alert("Mail  invalide");
       } else {
